@@ -1,0 +1,2 @@
+# cfmt
+CFEngine policy formatter
