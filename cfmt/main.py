@@ -7,17 +7,20 @@ def parse_args():
     return parser.parse_args()
 
 
-def main():
-    args = parse_args()
-
+def get_parser():
     Language.build_library('build/my-languages.so', ['tree-sitter-cfengine'])
     CFENGINE_LANGUAGE = Language('build/my-languages.so', 'CFEngine')
 
     parser = Parser()
     parser.set_language(CFENGINE_LANGUAGE)
+    return parser
 
+def main():
+    args = parse_args()
+
+    parser = get_parser()
     for file in args.files:
-        with open(file, mode="r", encoding="utf-8") as f:
+        with open(file, mode="rb") as f:
             buffer = f.read()
             tree = parser.parse(buffer)
             root = tree.root_node
