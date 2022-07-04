@@ -1,0 +1,3 @@
+# This is an empty bundle
+bundle agent empty_bundle {
+}
